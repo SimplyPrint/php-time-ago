@@ -31,7 +31,7 @@ class TimeAgo
      * TimeAgo constructor.
      * @param Language $language the language to use (defaults to 'en' for english)
      */
-    public function __construct(Language $language = null)
+    public function __construct(?Language $language = null)
     {
         $this->language = $language;
     }
@@ -69,7 +69,7 @@ class TimeAgo
      * @param DateTimeInterface $now the current time, defaults to now, using timezone from $past
      * @return string the time difference in a spoken format, e.g. 1 day ago
      */
-    public function inWords(DateTimeInterface $past, DateTimeInterface $now = null)
+    public function inWords(DateTimeInterface $past, ?DateTimeInterface $now = null)
     {
         // ensuring that "now" is a DateTime object, using the past's timeZone
         // if needed, to create a new now object.
@@ -100,7 +100,7 @@ class TimeAgo
      * @return array the difference in dates, using the two dates
      * @deprecated 3.0.0 this method is not really needed anymore, since DateTime can do it
      */
-    public function dateDifference(DateTimeInterface $past, DateTimeInterface $now = null)
+    public function dateDifference(DateTimeInterface $past, ?DateTimeInterface $now = null)
     {
         $now = $this->getNow($past, $now);
 
@@ -123,7 +123,7 @@ class TimeAgo
      * @param DateTimeInterface $now the now to use or initialize
      * @return DateTimeInterface $now initialized, if it was not, else the original object
      */
-    public function getNow(DateTimeInterface $past, DateTimeInterface $now = null): DateTimeInterface
+    public function getNow(DateTimeInterface $past, ?DateTimeInterface $now = null): DateTimeInterface
     {
         // handles cases where $now is null
         if (null === $now) {
